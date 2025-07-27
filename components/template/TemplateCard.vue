@@ -8,7 +8,7 @@
       <div class="ds-card-back">
         <div class="ds-card-back-bg" :style="{ backgroundImage: `url(${item.src})` }"></div>
         <div class="ds-card-back-content">
-          <h3>{{ item.title }}</h3>
+          <h3 class="ds-card-front-header">{{ item.title }}</h3>
           <p>{{ item.desc }}</p>
         </div>
       </div>
@@ -110,15 +110,14 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
-  padding: 1rem;
+  padding: 3.5rem 1rem 1rem;
   text-align: center;
 }
 
-.ds-card-back h3,
 .ds-card-back p {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  margin: 0.5rem 0;
+  margin: 0;
 }
 </style>

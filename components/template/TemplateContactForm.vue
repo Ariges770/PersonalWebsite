@@ -5,21 +5,35 @@
     <div class="row">
       <div class="col-8 col-12-small">
         <!-- <form method="post" action="#"> -->
-          <div class="row gtr-uniform gtr-50">
-            <div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-            <div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-            <div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+        <div class="row gtr-uniform gtr-50">
+          <div class="col-6 col-12-xsmall">
+            <input type="text" name="name" id="name" placeholder="Name" />
           </div>
+          <div class="col-6 col-12-xsmall">
+            <input type="email" name="email" id="email" placeholder="Email" />
+          </div>
+          <div class="col-12">
+            <textarea
+              class="response-box"
+              name="message"
+              id="message"
+              placeholder="Message"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
         <!-- </form> -->
         <ul class="actions">
-          <li style="padding-top: 1.25em"><input type="submit" value="Send Message" /></li>
+          <li style="padding-top: 1.25em">
+            <input type="submit" value="Send Message" />
+          </li>
         </ul>
       </div>
       <div class="col-4 col-12-small">
         <ul class="labeled-icons">
           <li>
             <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-            {{  mydata.address }}
+            {{ mydata.address }}
           </li>
           <!-- <li>
             <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
@@ -33,21 +47,26 @@
       </div>
     </div>
   </section>
-
 </template>
+
+<style>
+.response-box {
+  max-width: 100%;
+  min-width: 100%;
+}
+</style>
 
 <script setup>
 // import { Button, Hr, Html, Text } from ''
 
 // https://github.com/dword-design/nuxt-mail?utm_source=nuxt.com&utm_medium=aside-module&utm_campaign=nuxt.com
-const mail = useMail()
+const mail = useMail();
 
 const props = defineProps({
   title: String,
   mydata: {
     type: Object,
     required: true,
-},
+  },
 });
 </script>
-

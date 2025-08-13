@@ -1,14 +1,18 @@
 <template>
   <article class="col-6 col-12-xsmall work-item ds-card">
-    <a :href="item.url" class="ds-card-inner image fit">
+    <a :href="item.path" class="ds-card-inner image fit">
       <div class="ds-card-front">
         <h3 class="ds-card-front-header">{{ item.title }}</h3>
-        <img :src="item.src" alt="" />
+        <img :src="getImg(item.img)" alt="" />
       </div>
       <div class="ds-card-back">
-        <div class="ds-card-back-bg" :style="{ backgroundImage: `url(${item.src})` }"></div>
+        <div
+          class="ds-card-back-bg"
+          :style="{ backgroundImage: `url(${getImg(item.img)})` }"
+        ></div>
         <div class="ds-card-back-content">
           <h3 class="ds-card-front-header">{{ item.title }}</h3>
+          <h2>{{ item.author }}</h2>
           <p>{{ item.desc }}</p>
         </div>
       </div>
@@ -16,13 +20,25 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   item: {
-    type: Object,
+    type: Object as () => {
+      author: string;
+      date: string;
+      title: string;
+      desc: string;
+      img: string;
+      path: string;
+    },
     required: true,
   },
 });
+
+// Default card pic
+function getImg(path: string) {
+  return path ? path : `/img/fulls/05.jpg`;
+}
 </script>
 
 <style>
@@ -110,7 +126,7 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 100%;
   padding: 3.5rem 1rem 1rem;
   text-align: center;
@@ -119,5 +135,10 @@ const props = defineProps({
 .ds-card-back p {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0;
+}
+
+.ds-card h2 {
+  color: white;
+  margin: 0 0 1rem 0;
 }
 </style>

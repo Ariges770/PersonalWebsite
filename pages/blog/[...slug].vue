@@ -1,6 +1,13 @@
-<script setup lang="ts">
+<template>
+  <div>
+    <ContentRenderer v-if="content" :value="content" />
+    <div v-else>Document not found</div>
+  </div>
 
-const app = useNuxtApp()
+</template>
+
+
+<script setup lang="ts">
 
 
 const route = useRoute();
@@ -8,6 +15,7 @@ const { data: content } = await useAsyncData(() => queryCollection('content').pa
 
 // Move styles from rendered markdown to head tag
 const myStyles = useState<Array<any>>('myStyles', () => []);
+
 watch(content, (newContent) => {
   if (newContent?.body?.value) {
     newContent.body.value.filter(item => {
@@ -38,11 +46,3 @@ onMounted(async () => {
 //   description: home.value?.description
 // })
 </script>
-
-<template>
-  <div>
-    <ContentRenderer v-if="content" :value="content" :components="{  }" />
-    <div v-else>Document not found</div>
-  </div>
-
-</template>

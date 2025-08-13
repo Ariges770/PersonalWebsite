@@ -1,0 +1,65 @@
+/* 1. Hide the actual browser checkbox */
+.task-list-item input[type="checkbox"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 0;
+    position: absolute; /* Keep it from taking up space */
+    z-index: -1;
+}
+
+/* --- SETUP THE PARENT LI --- */
+li.task-list-item {
+    position: relative;
+    padding-left: 2.4em;
+    color: #a2a2a2;
+    /* cursor: pointer; */
+}
+
+li.task-list-item::marker {
+  content: none;
+}
+
+
+/* --- CREATE THE CUSTOM CHECKBOX FROM THE LI --- */
+li.task-list-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+    /* Copied directly from your original CSS for label:before */
+    background: #f7f7f7;
+    border-radius: 0.35em;
+    border: solid 2px transparent;
+    display: inline-block;
+    font-size: 0.8em;
+    height: 2.0625em;
+    line-height: 1.85625em; /* This is used for vertical centering in the original */
+    text-align: center;
+    width: 2.0625em;
+}
+
+/* 4. Style the checked state using :has() */
+li.task-list-item:has(input[type="checkbox"]:checked)::before {
+  background: #787878;
+  border-color: #787878;
+  color: #fff;
+
+  /* The checkmark icon from Font Awesome */
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+
+  /* Modern way to center the icon perfectly */
+  display: grid;
+  place-items: center;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+/* 5. Style the focus state using :has() */
+li.task-list-item:has(input[type="checkbox"]:focus)::before {
+  border-color: #49bf9d;
+}
+

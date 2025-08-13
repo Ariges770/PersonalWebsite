@@ -214,7 +214,7 @@ body,
 input,
 select,
 textarea {
-	color: #a2a2a2;
+	color: #181818;
 	font-family: "Source Sans Pro", Helvetica, sans-serif;
 	font-size: 16pt;
 	font-weight: 400;
@@ -2182,7 +2182,7 @@ input[type="radio"]+label:before {
 	-webkit-transition: opacity 0.2s ease-in-out;
 	-ms-transition: opacity 0.2s ease-in-out;
 	transition: opacity 0.2s ease-in-out;
-	background: url("images/overlay.png");
+	background: url("/img/overlay.png");
 	border-radius: 0.35em;
 	content: '';
 	display: block;
@@ -2194,11 +2194,11 @@ input[type="radio"]+label:before {
 	width: 100%;
 }
 
-.image.thumb {
+/* .image.thumb {
 	text-align: center;
-}
+} */
 
-.image.thumb:after {
+/* .image.thumb:after {
 	-moz-transition: opacity 0.2s ease-in-out;
 	-webkit-transition: opacity 0.2s ease-in-out;
 	-ms-transition: opacity 0.2s ease-in-out;
@@ -2220,16 +2220,16 @@ input[type="radio"]+label:before {
 	text-decoration: none;
 	top: 50%;
 	white-space: nowrap;
-}
+} */
 
-.image.thumb:hover:after {
+/* .image.thumb:hover:after {
 	opacity: 1.0;
 }
 
 .image.thumb:hover:before {
-	background: url("images/overlay.png"), url("images/overlay.png");
+	background: url("/img/overlay.png"), url("/img/overlay.png");
 	opacity: 1.0;
-}
+} */
 
 .image img {
 	border-radius: 0.35em;
@@ -2727,15 +2727,14 @@ input[type="button"]:disabled,
 	-webkit-justify-content: space-between;
 	-ms-justify-content: space-between;
 	justify-content: space-between;
-	background-color: #1f1815;
 	background-attachment: scroll, scroll, scroll;
+	background-color: #8a8a8a;
 	background-image: 
-		url("images/overlay.png"), 
+		url("/img/overlay.png"), 
 		linear-gradient(
-			rgba(32, 17, 0, 0.75),
-			rgba(23, 11, 26, 0.75) 
-		), 
-		url("images/bg.jpg");
+			rgb(0 32 22 / 75%), 
+			rgb(22 5 5 / 80%)), 
+		url("/img/bg.jpg");
 	background-position: top left, top left, top left;
 	background-repeat: repeat, repeat, no-repeat;
 	background-size: auto, auto, auto;
@@ -3239,7 +3238,7 @@ body.is-touch .poptrox-popup .closer {
 	#footer {
 		background-attachment: scroll;
 		background-color: #1f1815;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
+		background-image: url("/img/overlay.png"), url("/img/overlay.png");
 		background-position: top left, bottom center;
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;

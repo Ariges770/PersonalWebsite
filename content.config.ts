@@ -29,7 +29,22 @@ export default defineContentConfig({
     }),
     content: defineCollection({
       type: 'page',
-      source: '**/*.md'
+      source: '**/*.md',
+      schema: z.object({
+        author: z.string(),
+        date: z.string(),
+        title: z.string(),
+        desc: z.string(),
+        img: z.string().url(),
+        draft: z.boolean().default(true)
+        // img: z.string().url().default(`/img/fulls/0${Math.floor(6*Math.random() + 1)}.jpg`),
+      })
+    }),
+    docs: defineCollection({
+      // Load every file inside the `content` directory
+      source: '**',
+      // Specify the type of content in this collection
+      type: 'page'
     })
   }
 })

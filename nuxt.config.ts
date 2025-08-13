@@ -1,8 +1,11 @@
+import isCustomElement from "./utils/compilerOptions/isCustomElement"
+
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  plugins: [],
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
@@ -26,6 +29,45 @@ export default defineNuxtConfig({
         }
       }
     }
-  ]
-  ]
+    ]
+  ],
+  content: {
+    build: {
+      markdown: {
+        rehypePlugins: {
+          'rehype-mathjax/chtml': {
+            options: {
+              chtml: {
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+              }
+            }
+          },
+        },
+        remarkPlugins: {
+          'remark-math': {},
+          'remark-behead': {
+            options: {
+              depth: 0
+            }
+          },
+          'remark-gfm': {
+            options: {
+
+            }
+          }
+        },
+        highlight: {
+          theme: "material-theme-lighter",
+          langs: [
+            "py", "python", "r", "javascript", "js", "bash"
+          ]
+        }
+      }
+    }
+  },
+  // vue: {
+  //   compilerOptions: {
+  //     isCustomElement: isCustomElement
+  //   }
+  // }
 })

@@ -73,3 +73,18 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+```ts
+vue: {
+    compilerOptions: {
+      // Update custom elements to include both formats
+      isCustomElement: (tag) => {
+        const lowercased = tag.toLowerCase()
+
+        
+        return false
+
+      }
+    }
+  },
+  ```

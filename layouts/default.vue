@@ -18,7 +18,7 @@ const headerpaths = [
   // { path: "/research", title: "Research" },
   { path: "/resume", title: "Resume" },
   { path: "/contact", title: "Contact" },
-  { path: "/template", title: "Template" },
+  // { path: "/template", title: "Template" },
 ];
 </script>
 

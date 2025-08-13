@@ -7,7 +7,7 @@
       </header>
       <div>
         <p>
-          I'm currently enrolled in monash university studying a bachelor of commerce and
+          I'm currently enrolled in Monash university studying a bachelor of commerce and
           science majoring in mathematical foundations of econometrics and computational
           science.
         </p>
@@ -25,8 +25,8 @@
           introduction to programming.
         </p>
         <p>
-          My interests lie in automated planning, computational theory, signal processing
-          and machine learning, specifically forecasting and reinforcement learning.
+          My interests lie in automated planning, computational theory, web development, signal processing
+          and machine learning, specifically forecasting and statistical learning theory.
           Additionally, I also enjoy musical analysis and composition, having played flute
           in various ensembles and bands.
         </p>
@@ -38,7 +38,7 @@
         </p>
       </div>
       <ul class="actions">
-        <li><a href="#three" class="button">Reach out</a></li>
+        <li><a href="\contact" class="button">Reach out</a></li>
       </ul>
     </section>
 
@@ -48,61 +48,22 @@
     <section id="two">
       <h2>Recent Work</h2>
       <div class="row">
-        <!-- <TemplateCard :item="item" /> -->
-        <TemplateCard v-for="(item, index) in mycards" :item="item" />
+        <TemplateCard v-for="(item, index) in content" :item="item" />
       </div>
       <ul class="actions">
         <li><a href="#" class="button">Full Portfolio</a></li>
       </ul>
     </section>
-
-    <!-- Contact Form -->
-    <TemplateContactForm :mydata="myinfo" />
   </div>
 </template>
 
 <script setup>
-// console.log(urls.value)
-// const { data: urls } = await useAsyncData("urls", () => queryContent("/").sort({ date: -1}).find())
 
-// var contentArr = Array.from(urls.value).filter((item) => !item.draft)
-
-// // const { data } = await useAsyncData('content-files', () => queryContent().find())
-// const { data: contentFiles } = await useAsyncData("content-files", () => queryContent().find())
-// const { data: navUrls } = await useAsyncData("content-urls", () => fetchContentNavigation())
-
-const { data: myinfo } = await useAsyncData("mydata", () => {
-  return queryCollection("mydata")
-    .where("stem", "=", "mydata/PersonalContactInfo")
-    .first();
-});
-const { data: mycards } = await useAsyncData("mycards", () => {
-  return queryCollection("mycards").order("title", "DESC").all();
+const { data: content } = await useAsyncData("cards", () => {
+  return queryCollection("content")
+    .order("title", "DESC")
+    .where("draft", "=", true)
+    .all();
 });
 
-// console.log(txtfile.split("\n"))
-
-// console.log(contentFiles)
-// navUrls.value.forEach((item) => {console.log(item)})
-// for (const item of navUrls.value) {
-//   console.log(item)
-// }
-// if (window.matchMedia) {
-//   const query = window.matchMedia('prefers-color-scheme: dark');
-//   console.log(query)
-// }
-
-// // Find a single author
-// const { data: author } = await useAsyncData('larbish', () => {
-//   return queryCollection('authors')
-//     .where('stem', '=', 'larbish')
-//     .first()
-// })
-
-// // Get all authors
-// const { data: authors } = await useAsyncData('authors', () => {
-//   return queryCollection('authors')
-//     .order('name', 'DESC')
-//     .all()
-// })
 </script>

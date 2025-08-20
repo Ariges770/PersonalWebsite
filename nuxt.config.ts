@@ -1,4 +1,4 @@
-import isCustomElement from "./utils/compilerOptions/isCustomElement"
+// import isCustomElement from "./utils/compilerOptions/isCustomElement"
 
 
 // https://nuxt.com/docs/api/configuration/nuxt-config

@@ -1,0 +1,144 @@
+<template>
+  <article class="col-6 col-12-xsmall work-item ds-card">
+    <a :href="item.path" class="ds-card-inner image fit">
+      <div class="ds-card-front">
+        <h3 class="ds-card-front-header">{{ item.title }}</h3>
+        <img :src="getImg(item.img)" alt="" />
+      </div>
+      <div class="ds-card-back">
+        <div
+          class="ds-card-back-bg"
+          :style="{ backgroundImage: `url(${getImg(item.img)})` }"
+        ></div>
+        <div class="ds-card-back-content">
+          <h3 class="ds-card-front-header">{{ item.title }}</h3>
+          <h2>{{ item.author }}</h2>
+          <p>{{ item.desc }}</p>
+        </div>
+      </div>
+    </a>
+  </article>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  item: {
+    type: Object as () => {
+      author: string;
+      date: string;
+      title: string;
+      desc: string;
+      img: string;
+      path: string;
+    },
+    required: true,
+  },
+});
+
+// Default card pic
+function getImg(path: string) {
+  return path ? path : `/img/fulls/05.jpg`;
+}
+</script>
+
+<style>
+.ds-card {
+  width: 200px;
+  height: 250px;
+  margin: 1rem auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.ds-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.ds-card:hover .ds-card-inner {
+  transform: rotateY(180deg);
+}
+
+.ds-card-front,
+.ds-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.ds-card-front {
+  background: white;
+  border: 1px solid #ffffffff;
+}
+
+.ds-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ds-card-front-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  z-index: 1;
+  margin: 0;
+}
+
+.ds-card-back {
+  background: rgba(8, 21, 22, 0.85);
+  color: white;
+  transform: rotateY(180deg);
+  position: relative;
+}
+
+.ds-card-back-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  opacity: 0.6;
+  transform: scaleX(-1);
+  z-index: 0;
+}
+
+.ds-card-back-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-between; */
+  height: 100%;
+  padding: 3.5rem 1rem 1rem;
+  text-align: center;
+}
+
+.ds-card-back p {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.ds-card h2 {
+  color: white;
+  margin: 0 0 1rem 0;
+}
+</style>

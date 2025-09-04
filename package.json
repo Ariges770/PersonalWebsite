@@ -21,6 +21,7 @@
     "@nuxtjs/mdc": "file:nuxtjs-mdc-0.17.2.tgz",
     "@tato30/vue-pdf": "^1.11.4",
     "@unhead/vue": "^2.0.12",
+    "@vercel/analytics": "^1.5.0",
     "better-sqlite3": "^12.2.0",
     "eslint": "^9.31.0",
     "mathml": "^1.1.12",

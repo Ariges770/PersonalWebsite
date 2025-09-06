@@ -42,7 +42,8 @@ last-modified: 07-09-2025
 - Pretrained on ImageNet dataset
 - Optimised model performance with
 	- Fine tuned hyperparams
-	- Adjusted network structures, including adding and freezing layers
+	- Adjusted network structures, including adding and freezing layers  
+
 ![[EnsembleModelStructure.png]]
 
 - Stacked generaliser combines predictions from CNN models
@@ -61,7 +62,8 @@ last-modified: 07-09-2025
 	- 3 fully connected layers
 	- ReLU activation and max-pooling
 - Input images standardised to 224x224 px
-- 14 million params, fine tuning 15,000
+- 14 million params, fine tuning 15,000  
+
 ![[ModifiedVgg16Architecture.png]]
 - Enhancements include
 	- Global Average Pooling for spatial feature extraction
@@ -77,4 +79,11 @@ last-modified: 07-09-2025
 - Developed by Google
 - Renowned for its multiscale feature capture
 - Enhancements include
-	- Global Average Pooling layer
+	- Inclusion of Global Average Pooling layer for extracting features
+	- Dropout layer to avoid overfitting by deactivating neurons during training
+	- Tailored output layer designed to cater to specifics of the classification task (whatever that involves)
+- Used in model due to its sophisticated inception modules 
+	- Effectively captures multiscale features using parallel convolutional filters of different sizes
+
+### Modified MobileNetV2
+- 

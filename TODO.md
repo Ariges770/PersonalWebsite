@@ -39,4 +39,20 @@
 
 ### Content
 - [ ] Allow for pdf blogs (which will use json for metadata)
+- [ ] Add --- support for blogs to add preview text (inject automatically if not included to first paragraph)
+- [ ] Add support for custom components in markdown (like alerts, callouts, theorems and proofs etc)
+- [ ] Add nicer looking code blocks
+- [ ] Create template for blog pages
+- [ ] Add support for tags and categories for blogs
+- [ ] Add support for blog series (multiple blogs in a series)
+- [ ] Add support for related blogs at end of blog posts
+- [ ] Add support for blog authors (multiple authors per blog)
+- [ ] Create template tags and categories for blogs. (date-published, draft, backlinks, author, tags)
 
+## Quarto
+- [ ] Create lua plugin for mdc components
+- [ ] Create markdown quarto template
+
+## Resume
+- [ ] Create quarto template
+- [ ] Create latex, markdown and docx resume outputs

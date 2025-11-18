@@ -1,5 +1,4 @@
-// import isCustomElement from "./utils/compilerOptions/isCustomElement"
-
+import isCustomElement from "./app/utils/compilerOptions/isCustomElement"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -65,9 +64,9 @@ export default defineNuxtConfig({
       }
     }
   },
-  // vue: {
-  //   compilerOptions: {
-  //     isCustomElement: isCustomElement
-  //   }
-  // }
+  vue: {
+    compilerOptions: {
+      isCustomElement: isCustomElement
+    }
+  }
 })

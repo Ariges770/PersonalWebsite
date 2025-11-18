@@ -50,9 +50,7 @@ export default defineNuxtConfig({
             }
           },
           'remark-gfm': {
-            options: {
-
-            }
+            options: {}
           }
         },
         highlight: {

@@ -61,12 +61,12 @@
 @media screen and (max-width: 980px) {
 	
 	.tm-nav {
-		margin-left: -30px;
+		margin-left: -1em;
 		text-align: center;
 	}
 
 	.tm-ul {
 		display: inline-block;
-		width: 50%;
+		width: 75%;
 	}
 }

@@ -1,0 +1,73 @@
+/* Components: boxes, icons, images, lists, actions and small UI components */
+
+/* Box */
+.box { border-radius: 0.35em; border: solid 2px #efefef; margin-bottom: 2em; padding: 1.5em; }
+.box> :last-child, .box> :last-child> :last-child, .box> :last-child> :last-child> :last-child { margin-bottom: 0; }
+.box.alt { border: 0; border-radius: 0; padding: 0; }
+
+/* Icon */
+.icon { text-decoration: none; border-bottom: none; position: relative; }
+.icon:before { font-family: 'Font Awesome 5 Free'; font-weight: 400; display: inline-block; }
+.icon>.label { display: none; }
+.icon:before { line-height: inherit; }
+.icon.solid:before { font-weight: 900; }
+.icon.brands:before { font-family: 'Font Awesome 5 Brands'; }
+
+/* Image */
+.image { border-radius: 0.35em; border: 0; display: inline-block; position: relative; }
+.image:before { transition: opacity 0.2s ease-in-out; background: url("/img/overlay.png"); border-radius: 0.35em; content: ''; display: block; height: 100%; left: 0; opacity: 0.5; position: absolute; top: 0; width: 100%; }
+.image img { border-radius: 0.35em; display: block; }
+.image.left { float: left; margin: 0 1.5em 1em 0; top: 0.25em; }
+.image.right { float: right; margin: 0 0 1em 1.5em; top: 0.25em; }
+.image.left, .image.right { max-width: 40%; }
+.image.left img, .image.right img { width: 100%; }
+.image.fit { display: block; margin: 0 0 2em 0; width: 100%; }
+.image.fit img { width: 100%; }
+.image.avatar { border-radius: 100%; }
+.image.avatar:before { display: none; }
+.image.avatar img { border-radius: 100%; width: 100%; }
+
+/* List */
+ol { list-style: decimal; margin: 0 0 2em 0; padding-left: 1.25em; }
+ol li { padding-left: 0.25em; }
+ul { list-style: disc; margin: 0 0 2em 0; padding-left: 1em; }
+ul li { padding-left: 0.5em; }
+ul.alt { list-style: none; padding-left: 0; }
+ul.alt li { border-top: solid 2px #efefef; padding: 0.5em 0; }
+ul.alt li:first-child { border-top: 0; padding-top: 0; }
+dl { margin: 0 0 2em 0; }
+
+/* Icons list */
+ul.icons { cursor: default; list-style: none; padding-left: 0; }
+ul.icons li { display: inline-block; padding: 0 1em 0 0; }
+ul.icons li:last-child { padding-right: 0; }
+ul.icons li .icon:before { font-size: 1.5em; }
+
+/* Labeled Icons */
+ul.labeled-icons { list-style: none; padding: 0; }
+ul.labeled-icons li { line-height: 1.75em; margin: 1.5em 0 0 0; padding-left: 2.25em; position: relative; }
+ul.labeled-icons li:first-child { margin-top: 0; }
+ul.labeled-icons li a { color: inherit; }
+ul.labeled-icons li h3 { color: #b2b2b2; left: 0; position: absolute; text-align: center; top: 0; width: 1em; }
+
+/* Actions */
+ul.actions { display: flex; cursor: default; list-style: none; margin-left: -1em; padding-left: 0; }
+ul.actions li { padding: 0 0 0 1em; vertical-align: middle; }
+ul.actions.special { justify-content: center; width: 100%; margin-left: 0; }
+ul.actions.special li:first-child { padding-left: 0; }
+ul.actions.stacked { flex-direction: column; margin-left: 0; }
+ul.actions.stacked li { padding: 1.3em 0 0 0; }
+ul.actions.stacked li:first-child { padding-top: 0; }
+ul.actions.fit { width: calc(100% + 1em); }
+ul.actions.fit li { flex-grow: 1; flex-shrink: 1; width: 100%; }
+ul.actions.fit li>* { width: 100%; }
+ul.actions.fit.stacked { width: 100%; }
+
+@media screen and (max-width: 480px) {
+    ul.actions:not(.fixed) { flex-direction: column; margin-left: 0; width: 100% !important; }
+    ul.actions:not(.fixed) li { flex-grow: 1; flex-shrink: 1; padding: 1em 0 0 0; text-align: center; width: 100%; }
+    ul.actions:not(.fixed) li>* { width: 100%; }
+    ul.actions:not(.fixed) li:first-child { padding-top: 0; }
+    ul.actions:not(.fixed) li input[type="submit"], ul.actions:not(.fixed) li input[type="reset"], ul.actions:not(.fixed) li input[type="button"], ul.actions:not(.fixed) li button, ul.actions:not(.fixed) li .button { width: 100%; }
+    ul.actions:not(.fixed) li input[type="submit"].icon:before, ul.actions:not(.fixed) li input[type="reset"].icon:before, ul.actions:not(.fixed) li input[type="button"].icon:before, ul.actions:not(.fixed) li button.icon:before, ul.actions:not(.fixed) li .button.icon:before { margin-left: -0.5em; }
+}

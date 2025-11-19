@@ -1,0 +1,17 @@
+@import url("~/assets/css/fontawesome.min.css");
+
+:root,
+[data-bs-theme=light] {
+    --main-color: #0CC;
+    --inv-main-color: #006060;
+    --inv-main-color-nums: 0, 96, 96;
+    --inv-main-color: #006060;
+    --heading-highlight-color: #0CC;
+    --inv-heading-highlight-color: #055;
+    --primary-color: #099;
+    --inv-primary-color: #055;
+    --primary-box-color: rgb(255, 255, 255);
+    --main-highlight-color: #86ffff;
+    --text-color: #000;
+    --inv-text-color: #2a3746;
+}

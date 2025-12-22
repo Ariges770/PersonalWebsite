@@ -1,7 +1,7 @@
 <template>
     
       <!-- Footer -->
-      <footer id="footer" style="background-color: black">
+      <footer id="footer" :style="{ backgroundColor: 'var(--footer-bg)' }">
         <h1>This is my footer</h1>
         <div class="inner">
           <ul class="icons">

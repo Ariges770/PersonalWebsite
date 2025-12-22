@@ -1,13 +1,13 @@
 /* Components: boxes, icons, images, lists, actions and small UI components */
 
 /* Box */
-.box { border-radius: 0.35em; border: solid 2px #efefef; margin-bottom: 2em; padding: 1.5em; }
+.box { border-radius: 0.35em; border: solid 2px var(--border-color); margin-bottom: 2em; padding: 1.5em; }
 .box> :last-child, .box> :last-child> :last-child, .box> :last-child> :last-child> :last-child { margin-bottom: 0; }
 .box.alt { border: 0; border-radius: 0; padding: 0; }
 
 /* Icon */
 .icon { text-decoration: none; border-bottom: none; position: relative; }
-.icon:before { font-family: 'Font Awesome 5 Free'; font-weight: 400; display: inline-block; }
+.icon:before { font-family: 'Font Awesome 6 Pro'; font-weight: 400; display: inline-block; }
 .icon>.label { display: none; }
 .icon:before { line-height: inherit; }
 .icon.solid:before { font-weight: 900; }
@@ -33,7 +33,7 @@ ol li { padding-left: 0.25em; }
 ul { list-style: disc; margin: 0 0 2em 0; padding-left: 1em; }
 ul li { padding-left: 0.5em; }
 ul.alt { list-style: none; padding-left: 0; }
-ul.alt li { border-top: solid 2px #efefef; padding: 0.5em 0; }
+ul.alt li { border-top: solid 2px var(--border-color); padding: 0.5em 0; }
 ul.alt li:first-child { border-top: 0; padding-top: 0; }
 dl { margin: 0 0 2em 0; }
 
@@ -48,7 +48,7 @@ ul.labeled-icons { list-style: none; padding: 0; }
 ul.labeled-icons li { line-height: 1.75em; margin: 1.5em 0 0 0; padding-left: 2.25em; position: relative; }
 ul.labeled-icons li:first-child { margin-top: 0; }
 ul.labeled-icons li a { color: inherit; }
-ul.labeled-icons li h3 { color: #b2b2b2; left: 0; position: absolute; text-align: center; top: 0; width: 1em; }
+ul.labeled-icons li h3 { color: var(--text-muted-2); left: 0; position: absolute; text-align: center; top: 0; width: 1em; }
 
 /* Actions */
 ul.actions { display: flex; cursor: default; list-style: none; margin-left: -1em; padding-left: 0; }

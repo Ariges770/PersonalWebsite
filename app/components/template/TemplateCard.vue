@@ -73,8 +73,8 @@ function getImg(path: string) {
 }
 
 .ds-card-front {
-  background: white;
-  border: 1px solid #ffffffff;
+  background: var(--surface);
+  border: 1px solid var(--surface);
 }
 
 .ds-card-front img {
@@ -92,16 +92,16 @@ function getImg(path: string) {
   left: 0;
   width: 100%;
   padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: var(--card-overlay-dark);
+  color: var(--text-on-dark);
   text-align: center;
   z-index: 1;
   margin: 0;
 }
 
 .ds-card-back {
-  background: rgba(8, 21, 22, 0.85);
-  color: white;
+  background: var(--card-back-bg);
+  color: var(--text-on-dark);
   transform: rotateY(180deg);
   position: relative;
 }
@@ -133,12 +133,12 @@ function getImg(path: string) {
 }
 
 .ds-card-back p {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px var(--text-shadow);
   margin: 0;
 }
 
 .ds-card h2 {
-  color: white;
+  color: var(--text-on-dark);
   margin: 0 0 1rem 0;
 }
 </style>

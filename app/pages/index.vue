@@ -7,9 +7,8 @@
       </header>
       <div>
         <p>
-          I'm currently enrolled in Monash university studying a bachelor of commerce and
-          science majoring in mathematical foundations of econometrics and computational
-          science.
+          I Completed a bachelor's of Science majoring in Mathematics and Computational Science 
+          at Monash University
         </p>
         <p>
           I've worked as a research assistant under Dr. Buser Say on HD-MILP-PLAN, a
@@ -20,7 +19,7 @@
           such as pandemic planning using the SIR model. My extension allows for
           non-linear constraint generation with experiments conducted over various
           domains. <br />
-          Furthermore, I am currently working as a teaching associate teaching FIT1008,
+          Furthermore, I worked as a teaching associate teaching FIT1008,
           Monash's introduction to algorithms and have in the past taught FIT1045 -
           introduction to programming.
         </p>

@@ -15,6 +15,9 @@
 - [ ] Add docs and tests for MDC changes
 - [ ] Push changes to MDC repo 
 
+## Bugs  
+- [ ] Fix issue with dark mode and code blocks (code blocks not changing in dark mode)
+- [ ] FA icons not rendering
 
 ## Refactor
 - [ ] Refactor styles to use CSS variables

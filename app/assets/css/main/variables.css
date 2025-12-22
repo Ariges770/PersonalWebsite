@@ -1,0 +1,54 @@
+@import url("~/assets/fontawesome/css/all.min.css");
+
+/* Color variables (descriptive names) */
+:root,
+[data-bs-theme=light] {
+    /* Surfaces */
+    --bg-default: #ffffff; /* page background */
+    --surface: #ffffff; /* default surface / card background */
+    --surface-muted: #f7f7f7; /* muted surface (inputs, code bg) */
+
+    /* Text */
+    --text-default: #181818; /* primary body text */
+    --text-muted: #787878; /* secondary / muted text */
+    --text-muted-2: #b2b2b2; /* tertiary muted text */
+    --text-muted-3: #a2a2a2; /* subtle muted */
+
+    /* Primary / Accent */
+    --color-primary: #49bf9d; /* primary interactive color (links, buttons) */
+    --color-primary-hover: #5cc6a7; /* hover state */
+    --color-primary-active: #3eb08f; /* active state */
+    --color-primary-active-bg: rgba(73, 191, 157, 0.1); /* active background for buttons */
+
+    /* Borders / rules */
+    --border-color: #efefef; /* thin borders, hr, table separators */
+
+    /* Header / Footer specific */
+    --header-bg: #8a8a8a; /* header background */
+    --header-text: rgba(255,255,255,0.5); /* header text color */
+    --footer-bg: #1f1815; /* footer background */
+    --footer-text: rgba(255,255,255,0.4); /* footer text/icons */
+    --footer-border: rgba(255, 255, 255, 0.25); /* footer copyright separator */
+
+    /* Code / UI */
+    --code-bg: #f7f7f7; /* code block background */
+
+    /* Misc */
+    --selection-bg: #9effc6ff; /* ::selection background */
+    --selection-text: #09130dff; /* ::selection text color */
+    --disabled-bg: #e7e7e7; /* disabled buttons/controls */
+    --text-shadow: rgba(0, 0, 0, 0.5); /* dark text shadow for contrast */
+    /* Additional variables to cover remaining literals */
+    --text-on-dark: #ffffff; /* text color used on dark backgrounds */
+    --card-back-bg: rgba(8, 21, 22, 0.85); /* card back background */
+    --card-overlay-dark: rgba(0, 0, 0, 0.7); /* dark overlay for card headers */
+    --muted-border: rgba(170, 170, 170, 1); /* used for subtle dashed borders */
+    --dashed-border: rgba(255,255,255,0.2); /* dashed overlay border */
+    --dashed-border-hover: #006060; /* teal hover state for dashed borders */
+    --overlay-weak: rgba(0,0,0,0.01);
+    --overlay-border: rgba(255,255,255,0.5);
+    --box-shadow: rgba(0,0,0,0.15); /* shadow color for popups */
+    --tap-highlight: rgba(255,255,255,0); /* webkit tap highlight */
+    --header-gradient-top: rgba(0,32,22,0.75);
+    --header-gradient-bottom: rgba(22,5,5,0.8);
+}

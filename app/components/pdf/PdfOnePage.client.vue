@@ -47,7 +47,7 @@ const { pdf, pages } = usePDF("/pdf/resume.pdf");
   background-color: transparent;
   border-radius: 0.35em;
   /* border: solid 3px #efefef; */
-  color: #787878 !important;
+  color: var(--text-muted) !important;
   display: inline-block;
   font-weight: 400;
   height: 3.15em;

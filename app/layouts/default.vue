@@ -25,7 +25,7 @@ const headerpaths = [
 
 <style>
 ::selection {
-  background-color: #9effc6ff;
-  color: #09130dff;
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
 }
 </style>

@@ -22,7 +22,7 @@ const { pdf } = usePDF(props.title);
 
 <style>
 .textLayer ::selection {
-  background: #9effc6ff;
+  background: var(--selection-bg);
   /* background: color-mix(in srgb, AccentColor, transparent 0%) */
 }
 </style>

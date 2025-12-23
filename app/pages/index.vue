@@ -60,8 +60,8 @@
 
 const { data: content } = await useAsyncData("cards", () => {
   return queryCollection("content")
-    .order("title", "DESC")
-    // .where("draft", "=", false)
+    .order("date", "ASC")
+    .where("draft", "=", false)
     .all();
 });
 

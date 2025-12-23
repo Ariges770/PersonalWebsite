@@ -95,10 +95,11 @@ So therefore for $n$ carbon atoms there are $2+2n$ hydrogen atoms
 
 There exists a $5$-regular graph on $n$ vertices if and only if $n$ is even and $n\geq 6$.
 
-Proof:
+Proof:  
 ($\implies$) Let $G$ be a $5$-regular graph on $n$ vertices. By the handshaking lemma $\sum_{v \in V(G)}^{}\text{deg}(v) = 5\cdot n = 2|E(G)|$
 Therefore, $|E(G)| = \frac{5\cdot n}{2}$ which implies $n$ is even
-Additionally, $|E(G)| = \frac{5n}{2} \leq  \frac{n(n-1)}{2} \implies n \geq  6$ 
+Additionally, $|E(G)| = \frac{5n}{2} \leq  \frac{n(n-1)}{2} \implies n \geq  6$  
+
 ($\impliedby$) We prove that if $n$ is even and $n\geq 6$ then there exists a $5$-regular graph by induction on a graph with $2k$ vertices.
 Let $P(k)$ be the statement "there exists a $5$-regular graph on $2k$ vertices".
 We want to show that $P(k)$ is true $\forall k\geq 3$.

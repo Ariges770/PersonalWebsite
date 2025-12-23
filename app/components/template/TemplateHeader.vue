@@ -37,7 +37,10 @@
 <script setup lang="ts">
 const props = defineProps({
   headerpaths: {
-    type: Array,
+    type: Array as () => Array<{
+      title: string;
+      path: string;
+    }>,
     required: true,
   },
 });

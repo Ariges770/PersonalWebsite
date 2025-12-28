@@ -47,7 +47,7 @@
     <section id="two">
       <h2>Recent Work</h2>
       <div class="row">
-        <TemplateCard v-for="(item, index) in content" :item="item" />
+        <TemplateCard v-for="(item, index) in myrepo" :item="item" />
       </div>
       <ul class="actions">
         <li><a href="#" class="button">Full Portfolio</a></li>
@@ -58,9 +58,9 @@
 
 <script setup>
 
-const { data: content } = await useAsyncData("cards", () => {
-  return queryCollection("content")
-    .order("date", "ASC")
+const { data: myrepo } = await useAsyncData("cards", () => {
+  return queryCollection("myrepo")
+    .order("lastModified", "ASC")
     .where("draft", "=", false)
     .all();
 });

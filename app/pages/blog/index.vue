@@ -8,23 +8,33 @@
     </ul> -->
     <div class="row">
       <!-- <TemplateCard :item="item" /> -->
-      <TemplateCard v-for="(item, index) in data" :item="item" />
+      <TemplateCard v-for="(item, index) in myrepo" :item="item" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { data } = await useAsyncData("navigation", () => {
+// const { data: content } = await useAsyncData("navigation", () => {
+//   return (
+//     queryCollection("content")
+//       .order("date", "DESC")
+//       .where("path", "LIKE", "/blog%")
+//       .where("draft", "=", false)
+//       //   .select(
+//         //     "author", "date", "description", "extension", "id", "meta", "navigation", "path", "seo", "stem", "title")
+//         .select( "author", "date", "title", "desc", "img", "path")
+//         // .limit(5)
+//         .all()
+//       );
+//     });
+const { data: myrepo } = await useAsyncData(() => {
   return (
-    queryCollection("content")
-      .order("date", "DESC")
+    queryCollection('myrepo')
       .where("path", "LIKE", "/blog%")
-    //   .select(
-    //     "author", "date", "description", "extension", "id", "meta", "navigation", "path", "seo", "stem", "title")
-      .select( "author", "date", "title", "desc", "img", "path")
-      // .limit(5)
+      .where("draft", "=", false)
       .all()
-  );
-});
+  )
+})
+
 
 </script>

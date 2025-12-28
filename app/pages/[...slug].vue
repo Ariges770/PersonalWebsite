@@ -4,7 +4,7 @@ const app = useNuxtApp()
 
 
 const route = useRoute();
-const { data: content } = await useAsyncData(() => queryCollection('content').path(route.path).first())
+const { data: content } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
 
 // Move styles from rendered markdown to head tag
 const myStyles = useState<Array<any>>('myStyles', () => []);

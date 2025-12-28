@@ -17,25 +17,41 @@ export default defineContentConfig({
         }).optional()
       })
     }),
-    content: defineCollection({
+    // content: defineCollection({
+    //   type: 'page',
+    //   source: '**/*.md',
+    //   schema: z.object({
+    //     author: z.string(),
+    //     date: z.string(),
+    //     title: z.string(),
+    //     desc: z.string(),
+    //     img: z.string().url(),
+    //     draft: z.boolean().default(true)
+    //     // img: z.string().url().default(`/img/fulls/0${Math.floor(6*Math.random() + 1)}.jpg`),
+    //   })
+    // }),
+    myrepo: defineCollection({
       type: 'page',
-      source: '**/*.md',
+      source: {
+        repository: 'https://github.com/Ariges770/PersonalWebsiteObsidian',
+        include: '**/*.md',
+      },
       schema: z.object({
         author: z.string(),
-        date: z.string(),
+        dateCreated: z.string(),
+        lastModified: z.string(),
         title: z.string(),
         desc: z.string(),
         img: z.string().url(),
-        draft: z.boolean().default(true)
-        // img: z.string().url().default(`/img/fulls/0${Math.floor(6*Math.random() + 1)}.jpg`),
+        draft: z.boolean()
       })
     }),
-    docs: defineCollection({
-      // Load every file inside the `content` directory
-      source: '**',
-      // Specify the type of content in this collection
-      type: 'page'
-    })
+    // docs: defineCollection({
+    //   // Load every file inside the `content` directory
+    //   source: '**',
+    //   // Specify the type of content in this collection
+    //   type: 'page'
+    // })
   }
 })
 

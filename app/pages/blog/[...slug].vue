@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentRenderer v-if="content" :value="content" />
+    <ContentRenderer v-if="myrepo" :value="myrepo" />
     <div v-else>Document not found</div>
   </div>
 
@@ -11,10 +11,10 @@
 
 
 const route = useRoute();
-const { data: content } = await useAsyncData(() => queryCollection('content').path(route.path).first())
+const { data: myrepo } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
 
 // Move styles from rendered markdown to head tag
-loadStyles(content)
+loadStyles(myrepo)
 
 
 // useSeoMeta({

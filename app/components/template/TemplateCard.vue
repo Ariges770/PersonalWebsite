@@ -25,19 +25,33 @@ const props = defineProps({
   item: {
     type: Object as () => {
       author: string;
-      date: string;
+      dateCreated: string;
+      lastModified: string;
       title: string;
       desc: string;
       img: string;
       path: string;
+      draft: boolean;
+      // aliases:
+      // tags:
     },
     required: true,
   },
 });
 
 // Default card pic
+// function getImg(path: string) {
+//   return path 
+//   ? path 
+//   : `/img/fulls/05.jpg`;
+// }
+const fallback = `/img/fulls/05.jpg`;
 function getImg(path: string) {
-  return path ? path : `/img/fulls/05.jpg`;
+  const remoteRepoBase = 'https://raw.githubusercontent.com/Ariges770/PersonalWebsiteObsidian/main/';
+
+  // If path is provided, default to the remote repository
+  return path ? `${remoteRepoBase}${path}?raw=true` : fallback;
+  
 }
 </script>
 

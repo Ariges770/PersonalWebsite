@@ -50,6 +50,13 @@ function getImg(path: string) {
   cursor: pointer;
 }
 
+@media screen and (max-width: 624px) {
+  .ds-card {
+      width: 100%; /* Ensure cards take full width */
+      flex: 0 0 100%; /* Force one card per row */
+  }
+}
+
 .ds-card-inner {
   position: relative;
   width: 100%;

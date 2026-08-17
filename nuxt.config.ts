@@ -2,6 +2,25 @@ import isCustomElement from "./app/utils/compilerOptions/isCustomElement"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // coder: vite preview (dev v2) — allow the Coder proxy host, never cache dev
+  // modules (the Coder proxy adds a long max-age to uncached responses, which
+  // poisons browsers with stale module graphs), pre-optimize lazy deps so
+  // Vite does not re-optimize mid-session, and disable lazy dep discovery
+  // entirely (the general fix — no package ever triggers a mid-session
+  // re-bundle, regardless of what the repo imports).
+  vite: {
+    server: {
+      allowedHosts: true,
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    },
+    optimizeDeps: {
+      include: ["@vercel/analytics/nuxt","@vue/devtools-core","@vue/devtools-kit","@tato30/vue-pdf"],
+      discover: false,
+    },
+  },
+
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   plugins: [],

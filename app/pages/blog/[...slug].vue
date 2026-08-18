@@ -13,8 +13,8 @@
 const route = useRoute();
 const { data: myrepo } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
 
-// Move styles from rendered markdown to head tag
-loadStyles(myrepo)
+// // Move styles from rendered markdown to head tag
+// loadStyles(myrepo)
 
 
 // useSeoMeta({

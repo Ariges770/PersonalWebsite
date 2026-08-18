@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentRenderer v-if="myrepo" :value="myrepo" />
+    <ReadingArticle v-if="myrepo" :content="myrepo" />
     <div v-else>Document not found</div>
   </div>
 

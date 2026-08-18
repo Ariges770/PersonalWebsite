@@ -1,8 +1,5 @@
 <script setup lang="ts">
 
-const app = useNuxtApp()
-
-
 const route = useRoute();
 const { data: content } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
 
@@ -41,7 +38,7 @@ const { data: content } = await useAsyncData(() => queryCollection('myrepo').pat
 
 <template>
   <div>
-    <ContentRenderer v-if="content" :value="content" :components="{  }" />
+    <ReadingArticle v-if="content" :content="content" />
     <div v-else>Document not found</div>
   </div>
 

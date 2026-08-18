@@ -12,22 +12,18 @@ Personal site (Ari Gestetner). Stack: Nuxt 4 + Vue 3.5 + Nuxt Content v3 + Nuxt 
 ## Content architecture (read this before touching content)
 
 - `content.config.ts` defines four collections but only two are active: `mydata` and `myrepo`. The `content` and `docs` collections are commented out.
-- `myrepo` is the entire site's markdown source: `source: { repository: 'https://github.com/Ariges770/PersonalWebsiteObsidian' }`. It is cloned at dev/build time, so dev and build need network + git access to GitHub. All page routes (`app/pages/[...slug].vue`, `app/pages/blog/[...slug].vue`) query `queryCollection('myrepo')`; the blog list filters `path LIKE /blog%` and `draft = false`.
+- `myrepo` is the entire site's markdown source: `source: { repository: 'https://github.com/Ariges770/PersonalWebsiteObsidian' }`. It is cloned at dev/build time, so dev and build need network + git access to GitHub. All page routes (`app/pages/[...slug].vue`, `app/pages/blog/[...slug].vue`) query `queryCollection('myrepo')`; the blog list filters `path LIKE /blog%` and `draft = false` — but **only in production** (`import.meta.prod`), so dev shows drafts too (`app/pages/blog/index.vue`).
 - Local `content/blog/*.md` and `content/mycards/*.json` are **not** matched by any active collection — editing them does not change the site.
 - `mydata` = `content/mydata/*.json` (e.g. `PersonalContactInfo.json`), used by `app/pages/contact.vue`.
 
-## Rendering quirks
+## Rendering architecture (comark, not MDC)
 
-- Markdown is rendered with `ContentRenderer`; MDC syntax is active via `@nuxtjs/mdc`.
-- Custom pattern: `<style>` blocks inside markdown are hoisted into `<head>` by `app/composables/loadStyles.ts` (the same logic is duplicated inline in `app/pages/[...slug].vue`). It filters `style` entries out of `body.value` and injects them via `useHead`/`useState('myStyles')`. Keep both copies in sync.
-- `app/utils/compilerOptions/isCustomElement.ts` marks tags starting with `mjx` or `test` as custom elements (MathJax output in templates).
-- Math: `remark-math` + `rehype-mathjax/chtml` (fonts from the jsdelivr CDN). `rehype-katex` is installed but not wired up — don't assume it's active.
-- Other markdown config: `remark-behead` (depth 0), `remark-gfm`, highlight theme `material-theme-lighter` with langs py/python/r/javascript/js/bash, TOC depth/searchDepth 3 — all in the `content.build.markdown` block of `nuxt.config.ts`.
-
-## @nuxtjs/mdc is vendored — planned migration
-
-- `package.json` pins `"@nuxtjs/mdc": "file:nuxtjs-mdc-0.18.4.tgz"` (tarball in repo root). Do not change this to a registry version; `@nuxt/content` itself depends on `^0.18.3` and the tarball pin is deliberate. `nuxtjs-mdc-0.17.2.tgz` is stale — ignore it.
-- Goal: replace MDC with comark. When changing anything, follow **only** the official Nuxt, Nuxt Content, and comark documentation — no guidance from other sources.
+- Markdown is parsed **at build time by a custom transformer**: `transformers/comark.ts` replaces Nuxt Content's built-in MDC markdown transformer (`defineTransformer({ name: 'markdown', extensions: ['.md'] })`). It runs `createMarkdownParser` (cached) with comark plugins — `shiki` (material themes, langs python/r/javascript/bash), `math`, `emoji`, `toc({ depth: 3, searchDepth: 3 })`, `headings` — and stores the comark AST in the DB as `body: { type: 'minimark', value: nodes, toc }`, spreading frontmatter top-level so `draft`/`title`/`desc` stay queryable.
+- `transformers/math.ts` is a **fork of `comark/plugins/math`** with Obsidian-compatible inline math: no content-start digit guard (`$270 + 60 = 2187$` is math), a closer `$` followed by a digit is currency (rejected pair burned as text, scanning resumes after it — `$x/$5` text, `$x/$5 and $y$` → `y` math), closer preceded by whitespace or opener followed by whitespace is not math. Display `$$` and block rules unchanged. On comark upgrades, diff against upstream `comark/plugins/math` and re-apply. Known residual edge: comark's `autoClose` appends a closing `$` to a last line with an odd `$` count, so a lone money `$...` on a file's last line becomes math.
+- Rendering goes through `app/components/ContentRenderer.global.vue` — a global override of Nuxt Content's `ContentRenderer` that renders `<MarkdownDocument>` from the minimark body with `math: Math` mapped and KaTeX CSS imported. Pages keep using `<ContentRenderer :value="content" />` unchanged.
+- When changing rendering, follow **only** the official Nuxt, Nuxt Content, and comark documentation — no guidance from other sources.
+- Version discipline: `comark` and `@comark/nuxt` are pinned **exact** (no `^`) in `package.json`. Before upgrading, read comark release notes/migration guides (they make breaking changes in minors, e.g. component renames), then run lint + build and verify math/highlight/custom components/blog list. The transformer + renderer bridge is not maintained by comark's team (they moved their docs off Nuxt Content to `comark-content` in Aug 2026) — upgrading comark may require fixing the bridge.
+- Legacy (dead) code, kept commented out: style-hoisting logic in `app/composables/loadStyles.ts` and inline in `app/pages/[...slug].vue` (was needed for MathJax + MDC). `app/utils/compilerOptions/isCustomElement.ts` was deleted (MDC artifact).
 
 ## Environment quirks
 

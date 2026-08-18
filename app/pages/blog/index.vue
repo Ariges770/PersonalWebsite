@@ -27,14 +27,12 @@
 //         .all()
 //       );
 //     });
-const { data: myrepo } = await useAsyncData(() => {
-  return (
-    queryCollection('myrepo')
-      .where("path", "LIKE", "/blog%")
-      .where("draft", "=", false)
-      .all()
-  )
-})
+const query = queryCollection('myrepo')
+  .where("path", "LIKE", "/blog%")
+if (import.meta.prod) {
+  query.where("draft", "=", false)
+}
+const { data: myrepo } = await useAsyncData(() => query.all())
 
 
 </script>

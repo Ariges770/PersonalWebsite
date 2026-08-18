@@ -1,12 +1,40 @@
-import isCustomElement from "./app/utils/compilerOptions/isCustomElement"
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // coder: vite preview (dev v2) — allow the Coder proxy host, never cache dev
+  // modules (the Coder proxy adds a long max-age to uncached responses, which
+  // poisons browsers with stale module graphs), pre-optimize lazy deps so
+  // Vite does not re-optimize mid-session, and disable lazy dep discovery
+  // entirely (the general fix — no package ever triggers a mid-session
+  // re-bundle, regardless of what the repo imports).
+  vite: {
+    server: {
+      allowedHosts: true,
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    },
+    optimizeDeps: {
+      include: ["@vercel/analytics/nuxt","@vue/devtools-core","@vue/devtools-kit","@tato30/vue-pdf","@comark/vue","@comark/nuxt/plugins/math"],
+      noDiscovery: true,
+    },
+  },
+
+  
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   plugins: [],
+  css: ['katex/dist/katex.min.css'],
+  fonts: {
+    families: [
+      // Self-hosted/unknown font in app/assets/css/main/base.css — do not
+      // resolve it via any @nuxt/fonts provider (dev-time fetch of the bunny
+      // provider fails on flaky networks and breaks app boot).
+      { name: 'Source Sans Pro', provider: 'none' },
+    ],
+  },
   modules: [
     '@nuxt/content',
+    '@comark/nuxt',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -32,43 +60,7 @@ export default defineNuxtConfig({
   ],
   content: {
     build: {
-      markdown: {
-        toc: {
-          depth: 3,
-          searchDepth: 3
-        },
-        rehypePlugins: {
-          'rehype-mathjax/chtml': {
-            options: {
-              chtml: {
-                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
-              }
-            }
-          },
-        },
-        remarkPlugins: {
-          'remark-math': {},
-          'remark-behead': {
-            options: {
-              depth: 0
-            }
-          },
-          'remark-gfm': {
-            options: {}
-          }
-        },
-        highlight: {
-          theme: "material-theme-lighter",
-          langs: [
-            "py", "python", "r", "javascript", "js", "bash"
-          ]
-        }
-      }
-    }
-  },
-  vue: {
-    compilerOptions: {
-      isCustomElement: isCustomElement
+      transformers: ['~~/transformers/comark']
     }
   }
 })

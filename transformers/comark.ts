@@ -1,6 +1,6 @@
 import { createMarkdownParser, type ComarkParseFn } from 'comark'
 import shiki from 'comark/plugins/shiki'
-import math from 'comark/plugins/math'
+import math from './math'
 import emoji from 'comark/plugins/emoji'
 import toc from 'comark/plugins/toc'
 import headings from 'comark/plugins/headings'

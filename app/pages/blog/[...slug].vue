@@ -10,8 +10,15 @@
 <script setup lang="ts">
 
 
+definePageMeta({
+  key: (route) => route.path,
+})
+
 const route = useRoute();
-const { data: myrepo } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
+const { data: myrepo } = await useAsyncData(
+  `myrepo-${route.path}`,
+  () => queryCollection('myrepo').path(route.path).first(),
+)
 
 // // Move styles from rendered markdown to head tag
 // loadStyles(myrepo)

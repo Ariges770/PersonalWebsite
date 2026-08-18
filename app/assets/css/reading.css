@@ -59,15 +59,17 @@
     -webkit-overflow-scrolling: touch;
 }
 
-/* Table of contents: fixed right panel on desktop, inline above the article on tablet.
-   The right offset mirrors the sidebar width so the gap between the text column and
-   the TOC always equals the gap between the sidebar and the text column. */
+/* Reading rail: table of contents + related articles.
+   Fixed right panel on desktop, sticky box on tablet.
+   The right offset mirrors the sidebar width so the gap between the text
+   column and the rail always equals the gap between the sidebar and the text
+   column. */
 
-.reading-toc {
+.reading-rail {
     position: fixed;
     top: 2em;
     /* 24rem == 18em at the site's 16pt body base, mirroring the sidebar width
-       so the text/TOC gap always equals the sidebar/text gap. */
+       so the text/rail gap always equals the sidebar/text gap. */
     right: calc(min(25%, 24rem) - 16rem);
     width: 16rem;
     max-height: calc(100vh - 4em);
@@ -122,7 +124,7 @@
     .reading-layout { flex-direction: column; align-items: center; }
 
     /* Sticky box pinned while reading so the active section stays visible */
-    .reading-layout > .reading-toc {
+    .reading-layout > .reading-rail {
         order: -1;
         position: sticky;
         top: 1em;
@@ -140,5 +142,53 @@
 }
 
 @media screen and (max-width: 767px) {
-    .reading-toc { display: none; }
+    .reading-rail { display: none; }
+}
+
+/* Related articles (below the TOC in the rail) */
+
+.reading-related {
+    margin-top: 1.5em;
+    padding-top: 1.25em;
+    border-top: solid 1px var(--border-color);
+}
+
+.reading-related-title {
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted-2);
+    margin: 0 0 0.75em 0;
+}
+
+.reading-related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reading-related-item { padding: 0; margin: 0 0 0.9em 0; }
+
+.reading-related-item:last-child { margin-bottom: 0; }
+
+.reading-related-link {
+    border-bottom: 0;
+    color: var(--text-muted);
+}
+
+.reading-related-link:hover { color: var(--color-primary); }
+
+.reading-related-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9em;
+    line-height: 1.3em;
+}
+
+.reading-related-desc {
+    display: block;
+    color: var(--text-muted-2);
+    font-size: 0.8em;
+    line-height: 1.4em;
+    margin-top: 0.2em;
 }

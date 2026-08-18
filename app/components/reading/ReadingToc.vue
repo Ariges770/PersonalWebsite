@@ -1,5 +1,5 @@
 <template>
-  <aside class="reading-toc">
+  <nav class="reading-toc">
     <p class="reading-toc-title">On this page</p>
     <ul class="reading-toc-list">
       <ReadingTocItem
@@ -11,7 +11,7 @@
         :expanded="activeSectionId === link.id"
       />
     </ul>
-  </aside>
+  </nav>
 </template>
 
 <script setup lang="ts">

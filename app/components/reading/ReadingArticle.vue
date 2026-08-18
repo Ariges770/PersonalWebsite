@@ -10,7 +10,10 @@
       </header>
       <ContentRenderer :value="content" />
     </article>
-    <ReadingToc v-if="tocLinks.length" :links="tocLinks" />
+    <aside v-if="tocLinks.length || suggestions.length" class="reading-rail">
+      <ReadingToc v-if="tocLinks.length" :links="tocLinks" />
+      <ReadingRelated v-if="suggestions.length" :items="suggestions" />
+    </aside>
   </div>
 </template>
 
@@ -38,6 +41,8 @@ const props = defineProps<{
   content: ReadingContent
 }>()
 
+const route = useRoute()
+
 const tocLinks = computed(() => props.content?.body?.toc?.links ?? [])
 
 const title = computed(() => props.content?.title ?? '')
@@ -60,4 +65,25 @@ const lastUpdated = computed(() => {
 })
 
 const showHeader = computed(() => !!(title.value || author.value || lastUpdated.value || imgSrc.value))
+
+// Suggested articles: prefer posts in the same folder, then fill with others.
+const { data: relatedPosts } = await useAsyncData('reading-related', () => {
+  const query = queryCollection('myrepo')
+    .where('path', 'LIKE', '/blog%')
+    .select('path', 'title', 'desc')
+  if (import.meta.prod) {
+    query.where('draft', '=', false)
+  }
+  return query.all()
+})
+
+const suggestions = computed(() => {
+  const current = route.path
+  const posts = relatedPosts.value ?? []
+  const others = posts.filter((post) => post.path !== current)
+  const parentDir = current.slice(0, current.lastIndexOf('/'))
+  const sameFolder = others.filter((post) => post.path.startsWith(`${parentDir}/`))
+  const rest = others.filter((post) => !sameFolder.includes(post))
+  return [...sameFolder, ...rest].slice(0, 4)
+})
 </script>

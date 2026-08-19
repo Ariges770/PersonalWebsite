@@ -9,10 +9,11 @@
         </p>
       </header>
       <ContentRenderer :value="content" />
+      <ReadingRelated v-if="suggestions.length" class="reading-related-after" :items="suggestions" />
     </article>
     <aside v-if="tocLinks.length || suggestions.length" class="reading-rail">
       <ReadingToc v-if="tocLinks.length" :links="tocLinks" />
-      <ReadingRelated v-if="suggestions.length" :items="suggestions" />
+      <ReadingRelated v-if="suggestions.length" class="reading-related-rail" :items="suggestions" />
     </aside>
   </div>
 </template>

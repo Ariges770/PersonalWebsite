@@ -16,4 +16,5 @@
 @import url("~/assets/css/gfm-styles.css");
 @import url("~/assets/fontawesome/css/all.min.css");
 @import url("~/assets/css/tm-template.css");
+@import url("~/assets/css/reading.css");
 </style>

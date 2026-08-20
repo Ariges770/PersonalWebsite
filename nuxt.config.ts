@@ -62,5 +62,23 @@ export default defineNuxtConfig({
     build: {
       transformers: ['~~/transformers/comark']
     }
-  }
+  },
+  hooks: {
+    // Bundle the cloned content source (Obsidian repo under .data/content) into
+    // the static output as /content/... so frontmatter `img` paths and markdown
+    // attachments are served as real files in production (Vercel serverless has
+    // no .data at runtime — the old /content route only worked in dev).
+    async 'nitro:build:public-assets'(nitro: any) {
+      const { promises: fs } = await import('node:fs')
+      const { join } = await import('node:path')
+      const dataDir = join(process.cwd(), '.data', 'content')
+      const entries = await fs.readdir(dataDir).catch(() => [])
+      const repo = entries.find((e) => e.startsWith('github-'))
+      if (!repo) return
+      await fs.cp(join(dataDir, repo), join(nitro.options.output.publicDir, 'content'), {
+        recursive: true,
+        filter: (src) => !/\/\.obsidian($|\/)/.test(src) && !src.endsWith('.git'),
+      })
+    },
+  },
 })

@@ -19,12 +19,12 @@
     color: var(--header-text);
     height: 100%;
     left: 0;
-    padding: 6em 3em;
+    padding: 6em 2.5em;
     position: fixed;
     text-align: center;
     top: 0;
-    width: 25%;
-    max-width: 18em;
+    width: 18%;
+    max-width: 14em;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -43,19 +43,18 @@
 #footer .copyright li:first-child { border-left: 0; margin-left: 0; padding-left: 0; }
 #footer .copyright li a { color: inherit; }
 
-#main { margin-left: min(25%, 18em); max-width: 54em; padding: 8em 4em 4em 4em; width: calc(100% - 25%); }
+#main { margin-left: min(18%, 14em); max-width: 54em; padding: 8em 4em 4em 4em; width: calc(100% - 18%); }
 #main>section { border-top: solid 2px var(--border-color); margin: 4em 0 0 0; padding: 4em 0 0 0; }
 #main>section:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
 
-/* Reading pages: mirror the sidebar width on the right so the article column
-   is forced to the exact centre of the screen (desktop only — below 1280px the
-   TOC is inline/sticky and the extra right margin would just waste space). */
+/* Reading pages: the article + right rail sit side by side inside #main, which
+   fills the space after the sidebar (no mirrored right margin), so the text
+   column can be as wide as a classic docs page. */
 @media screen and (min-width: 1280px) {
     #main:has(.reading-layout) {
-        margin-left: min(25%, 18em);
-        margin-right: min(25%, 18em);
-        width: auto;
+        margin-left: min(18%, 14em);
+        width: calc(100% - min(18%, 14em));
         max-width: none;
-        padding: 8em 3em 4em 3em;
+        padding: 8em 2em 4em 2em;
     }
 }

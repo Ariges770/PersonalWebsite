@@ -5,13 +5,16 @@
 .reading-layout {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    gap: 3em;
     font-size: 0.75em;
 }
 
 .reading-article {
     width: 100%;
-    max-width: 42rem;
+    max-width: 52rem;
     min-width: 0;
+    flex: 0 1 auto;
 }
 
 .reading-article h2 { margin-top: 2.5em; }
@@ -60,18 +63,14 @@
 }
 
 /* Reading rail: table of contents + related articles.
-   Fixed right panel on desktop, sticky box on tablet.
-   The right offset mirrors the sidebar width so the gap between the text
-   column and the rail always equals the gap between the sidebar and the text
-   column. */
+   On desktop it's a sticky in-flow column next to the article (docs-style); on
+   tablet/phone it stacks at the top and scrolls away with the page. */
 
 .reading-rail {
-    position: fixed;
+    position: sticky;
     top: 2em;
-    /* 24rem == 18em at the site's 16pt body base, mirroring the sidebar width
-       so the text/rail gap always equals the sidebar/text gap. */
-    right: calc(min(25%, 24rem) - 16rem);
     width: 16rem;
+    flex: 0 0 16rem;
     max-height: calc(100vh - 4em);
     overflow-y: auto;
 }
@@ -124,13 +123,13 @@
    of the page and scrolls away with it (never pinned over the content), and
    the article recommendations move below the article. */
 @media screen and (max-width: 1279px) {
-    .reading-layout { flex-direction: column; align-items: center; }
+    .reading-layout { flex-direction: column; align-items: center; gap: 0; }
 
     .reading-layout > .reading-rail {
         order: -1;
         position: static;
         width: 100%;
-        max-width: 42rem;
+        max-width: 52rem;
         margin: 0 0 2em 0;
         padding: 1em 1.25em;
         background: var(--surface);

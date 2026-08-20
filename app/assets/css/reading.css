@@ -69,8 +69,8 @@
 .reading-rail {
     position: sticky;
     top: 2em;
-    width: 16rem;
-    flex: 0 0 16rem;
+    width: 14rem;
+    flex: 0 0 14rem;
     max-height: calc(100vh - 4em);
     overflow-y: auto;
 }

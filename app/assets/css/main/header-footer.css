@@ -23,8 +23,8 @@
     position: fixed;
     text-align: center;
     top: 0;
-    width: 18%;
-    max-width: 14em;
+    width: 20%;
+    max-width: 16em;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -43,7 +43,7 @@
 #footer .copyright li:first-child { border-left: 0; margin-left: 0; padding-left: 0; }
 #footer .copyright li a { color: inherit; }
 
-#main { margin-left: min(18%, 14em); max-width: 54em; padding: 8em 4em 4em 4em; width: calc(100% - 18%); }
+#main { margin-left: min(20%, 16em); max-width: 54em; padding: 8em 4em 4em 4em; width: calc(100% - 20%); }
 #main>section { border-top: solid 2px var(--border-color); margin: 4em 0 0 0; padding: 4em 0 0 0; }
 #main>section:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
 
@@ -52,8 +52,8 @@
    column can be as wide as a classic docs page. */
 @media screen and (min-width: 1280px) {
     #main:has(.reading-layout) {
-        margin-left: min(18%, 14em);
-        width: calc(100% - min(18%, 14em));
+        margin-left: min(20%, 16em);
+        width: calc(100% - min(20%, 16em));
         max-width: none;
         padding: 8em 2em 4em 2em;
     }

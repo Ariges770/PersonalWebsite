@@ -1,10 +1,14 @@
 <script setup lang="ts">
 
-const app = useNuxtApp()
-
+definePageMeta({
+  key: (route) => route.path,
+})
 
 const route = useRoute();
-const { data: content } = await useAsyncData(() => queryCollection('myrepo').path(route.path).first())
+const { data: content } = await useAsyncData(
+  `myrepo-${route.path}`,
+  () => queryCollection('myrepo').path(route.path).first(),
+)
 
 // // Move styles from rendered markdown to head tag
 // const myStyles = useState<Array<any>>('myStyles', () => []);
@@ -41,7 +45,7 @@ const { data: content } = await useAsyncData(() => queryCollection('myrepo').pat
 
 <template>
   <div>
-    <ContentRenderer v-if="content" :value="content" :components="{  }" />
+    <ReadingArticle v-if="content" :content="content" />
     <div v-else>Document not found</div>
   </div>
 

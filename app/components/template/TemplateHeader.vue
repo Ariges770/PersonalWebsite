@@ -25,7 +25,6 @@
           }"
         >
           <a :href="headerpath.path" class="tm-nav-link">
-            <!-- <i class="fas fa-home"></i> -->
             {{ headerpath.title }}
           </a>
         </li>
@@ -35,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   headerpaths: {
     type: Array as () => Array<{
       title: string;

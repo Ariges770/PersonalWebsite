@@ -1,0 +1,203 @@
+/* Reading layout: paper column, table of contents, math overflow */
+
+/* --- Paper column --- */
+
+.reading-layout {
+    display: flex;
+    justify-content: center;
+    font-size: 0.75em;
+}
+
+.reading-article {
+    width: 100%;
+    max-width: 42rem;
+    min-width: 0;
+}
+
+.reading-article h2 { margin-top: 2.5em; }
+.reading-article h3 { margin-top: 2em; }
+.reading-article h2:first-child, .reading-article h3:first-child { margin-top: 0; }
+
+/* Article header (card image + author / last-updated) */
+.article-header { margin: 0 0 2em 0; }
+
+.article-header-img {
+    display: block;
+    width: 100%;
+    border-radius: 0.35em;
+    margin: 0 0 1.5em 0;
+}
+
+.article-header-meta {
+    color: var(--text-muted);
+    font-size: 0.8em;
+    margin: 0;
+}
+
+.article-header-meta span { margin-right: 1.5em; }
+
+.article-header-author { font-weight: 700; }
+
+.reading-article h2[id], .reading-article h3[id], .reading-article h4[id] {
+    scroll-margin-top: 1.5em;
+}
+
+/* Wide content inside the article must scroll in place, not blow out the page */
+.reading-article .math.block {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25em 0;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.reading-article table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Reading rail: table of contents + related articles.
+   Fixed right panel on desktop, sticky box on tablet.
+   The right offset mirrors the sidebar width so the gap between the text
+   column and the rail always equals the gap between the sidebar and the text
+   column. */
+
+.reading-rail {
+    position: fixed;
+    top: 2em;
+    /* 24rem == 18em at the site's 16pt body base, mirroring the sidebar width
+       so the text/rail gap always equals the sidebar/text gap. */
+    right: calc(min(25%, 24rem) - 16rem);
+    width: 16rem;
+    max-height: calc(100vh - 4em);
+    overflow-y: auto;
+}
+
+.reading-toc-title {
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted-2);
+    margin: 0 0 0.75em 0;
+    padding-bottom: 0.75em;
+    border-bottom: solid 1px var(--border-color);
+}
+
+.reading-toc-list, .reading-toc-children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reading-toc-children {
+    margin: 0.25em 0 0.5em 0.9em;
+    padding-left: 0.6em;
+    border-left: solid 1px var(--border-color);
+}
+
+.reading-toc-item { padding: 0; }
+
+.reading-toc-link {
+    display: block;
+    border-bottom: 0;
+    padding: 0.3em 0;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    line-height: 1.4em;
+}
+
+.reading-toc-link:hover { color: var(--color-primary); background: var(--color-primary-active-bg); }
+
+.reading-toc-link.active {
+    color: var(--color-primary);
+    font-weight: 700;
+    background: var(--color-primary-active-bg);
+    border-radius: 0.3em;
+    border-left: 2px solid var(--color-primary);
+    padding-left: 0.8em;
+}
+
+/* Below 1280px (tablet + phone): the layout stacks, the TOC sits at the top
+   of the page and scrolls away with it (never pinned over the content), and
+   the article recommendations move below the article. */
+@media screen and (max-width: 1279px) {
+    .reading-layout { flex-direction: column; align-items: center; }
+
+    .reading-layout > .reading-rail {
+        order: -1;
+        position: static;
+        width: 100%;
+        max-width: 42rem;
+        margin: 0 0 2em 0;
+        padding: 1em 1.25em;
+        background: var(--surface);
+        border: solid 1px var(--border-color);
+        border-radius: 0.35em;
+    }
+
+    /* A rail with no TOC only holds the desktop-related list, which is hidden
+       here — don't leave an empty box. */
+    .reading-rail.no-toc { display: none; }
+}
+
+/* Related articles live in the fixed rail on desktop, and after the article
+   on tablet/phone. */
+.reading-related-rail { margin-top: 1.5em; padding-top: 1.25em; border-top: solid 1px var(--border-color); }
+
+@media screen and (max-width: 1279px) {
+    .reading-related-rail { display: none; }
+}
+
+.reading-related-after { display: none; }
+
+@media screen and (max-width: 1279px) {
+    .reading-related-after {
+        display: block;
+        margin-top: 2.5em;
+        padding-top: 1.5em;
+        border-top: solid 1px var(--border-color);
+    }
+}
+
+.reading-related-title {
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted-2);
+    margin: 0 0 0.75em 0;
+}
+
+.reading-related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reading-related-item { padding: 0; margin: 0 0 0.9em 0; }
+
+.reading-related-item:last-child { margin-bottom: 0; }
+
+.reading-related-link {
+    border-bottom: 0;
+    color: var(--text-muted);
+}
+
+.reading-related-link:hover { color: var(--color-primary); }
+
+.reading-related-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9em;
+    line-height: 1.3em;
+}
+
+.reading-related-desc {
+    display: block;
+    color: var(--text-muted-2);
+    font-size: 0.8em;
+    line-height: 1.4em;
+    margin-top: 0.2em;
+}
